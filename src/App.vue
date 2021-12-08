@@ -97,6 +97,7 @@ body{
   color: #FFFFFF;
   text-decoration: none;
   transition: .3s;
+  cursor: pointer;
 }
 .header h1 a:hover{
   font-size: 40px;
@@ -107,6 +108,7 @@ body{
   text-decoration: none;
   margin-right: 15px;
   transition: .3s;
+  cursor: pointer;
 }
 .header nav a:hover{
   font-size: 20px;
