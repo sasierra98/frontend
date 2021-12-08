@@ -1,30 +1,58 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="app" class="app">
+
+    <div class="header">
+      <h1>WebPets</h1>
+    </div>
+
   </div>
-  <router-view/>
 </template>
 
+<script>
+export default {
+  name: 'App',
+
+  data: function(){
+  },
+
+  methods: {
+  },
+
+  created: function(){
+  },
+}
+</script>
+
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* 
+  Celeste: #3FBACC 
+  Blanco: #FFFFFF
+*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Roboto', sans-serif;
+}
+.header{
+
+  widows: 100%;
+  height: 70px;
+  min-height: 70px;
+  background-color: #3FBACC;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1{
+  width: 20%;
   text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
