@@ -7,9 +7,9 @@
                 <input type="text" v-model="user.username" placeholder="Usuario">
                 <input type="password" v-model="user.password" placeholder="Contraseña">
                 <input type="text" v-model="user.name" placeholder="Nombres">
-                <input type="text" v-model="user.lastname" placeholder="Apellidos">
+                <input type="text" v-model="user.lastName" placeholder="Apellidos">
                 <input type="email" v-model="user.email" placeholder="Correo">
-                <input type="tel" v-model="user.tel" placeholder="Telefono">
+                <input type="number" v-model="user.tel" placeholder="Telefono">
                 <input type="text" v-model="user.location" placeholder="Ciudad">
                 <input type="text" v-model="user.address" placeholder="Direccion">
                 <select v-model="user.gender">
@@ -24,19 +24,21 @@
 </template>
 
 <script>
+import gql from "graphql-tag";
+
 export default {
     name: 'signup',
 
     data: function () {
         return {
             user: {
-                id: '',
+                id: 0,
                 username: '',
                 password: '',
                 name: '',
-                lastname: '',
+                lastName: '',
                 email: '',
-                tel: '',
+                tel: 0,
                 location: '',
                 address: '',
                 gender: '',
@@ -45,8 +47,31 @@ export default {
     },
 
     methods: {
-        proccessSignUp: function(){
-            // Post
+        proccessSignUp: async function(){
+            await this.$apollo
+            .mutate({
+                mutation: gql`
+                    mutation($userInput: SignUpInput!) {
+                        signUpUser(userInput: $userInput) {
+                            refresh
+                            access
+                        }
+                    }
+                `,
+                variables: {
+                    userInput: this.user
+                },
+            })
+            .then((result)=>{
+                let dataLogIn = {
+                    username: this.user.username,
+                    token_access: result.data.signUpUser.access,
+                    token_refresh: result.data.signUpUser.refresh,
+                };
+                this.$emit("completedSignup", dataLogIn);
+            }).catch((error)=>{
+                alert("Error al realizar el registro"); 
+            });
         }
     }
 }

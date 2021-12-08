@@ -23,8 +23,8 @@ const apolloClient = new ApolloClient({
     cache: new InMemoryCache()
 })
 
-const apolloProvider = createApolloProvider({
-    defaultClient: apolloClient,
+const apolloProvider = new createApolloProvider({
+    defaultClient: apolloClient,    
 })
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(apolloProvider).mount('#app')

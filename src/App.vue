@@ -4,12 +4,12 @@
     <div class="header">
       <h1><a href="">WebPets</a></h1>
       <nav>
-        <a v-if="is_auth">Cuenta</a>
+        <a v-if="is_auth" v-on:click="loadHome">Cuenta</a>
         <a v-if="is_auth">Registrar mascota</a>
         <a v-if="is_auth">Ver mascotas</a>
-        <a v-if="is_auth">Cerrar sesion</a>
-        <a v-if="!is_auth" v-on="loadLogin">Iniciar Sesión</a>
-        <a v-if="!is_auth" v-on="loadSignup">Registrarse</a>
+        <a v-if="is_auth" v-on:click="logOut">Cerrar sesion</a>
+        <a v-if="!is_auth" v-on:click="loadLogin">Iniciar Sesión</a>
+        <a v-if="!is_auth" v-on:click="loadSignup">Registrarse</a>
       </nav>
     </div>
 
@@ -17,6 +17,7 @@
       <router-view
         v-on:completedLogin="completedLogin"
         v-on:completedSignup="completedSignup"
+        v-on:logOut="logOut"
       ></router-view>
     </div>
 
@@ -44,6 +45,8 @@ export default {
     verifyAuth: function(){
       if(this.is_auth==false)
         this.$router.push({name: 'login'})
+      else
+        this.$router.push({name: 'home'})
     },
     loadLogin: function(){
       this.$router.push({name: 'login'})
@@ -51,8 +54,26 @@ export default {
     loadSignup: function(){
       this.$router.push({name: 'signup'})
     },
-    completedLogin: function(data){},
-    completedSignup: function(data){},
+    completedLogin: function(data){
+      localStorage.setItem('isAuth', true)
+      localStorage.setItem('username', data.username)
+      localStorage.setItem('token_access', data.token_access)
+      localStorage.setItem('token_refresh', data.token_refresh)
+      alert('Autenticación exitosa')
+      this.verifyAuth()
+    },
+    completedSignup: function(data){
+      alert('Registro exitoso')
+      this.completedLogin(data)
+    },
+    loadHome: function(){
+      this.$router.push({name: 'home'})
+    },
+    logOut: function(){
+      localStorage.clear()
+      alert('Sesión cerrada')
+      this.verifyAuth()
+    }
   },
 
   created: function(){
