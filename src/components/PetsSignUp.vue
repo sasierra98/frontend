@@ -63,7 +63,7 @@ export default {
                     }
                 `,
             variables: {
-              input: this.pet
+              input: this.pet /
             },
           })
           .then((result)=>{
