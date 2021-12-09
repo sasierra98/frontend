@@ -63,16 +63,16 @@ export default {
                     }
                 `,
             variables: {
-              input: this.pet
+              input: this.pet /
             },
           })
           .then((result)=>{
             let dataLogIn = {
-              //username: this.user.username,
-              //token_access: result.data.signUpUser.access,
-              //token_refresh: result.data.signUpUser.refresh,
+              username: this.user.username,
+              token_access: result.data.signUpUser.access,
+              token_refresh: result.data.signUpUser.refresh,
             };
-            this.$emit("completedSignup");
+            this.$emit("completedSignup", dataLogIn);
           }).catch((error)=>{
             alert("Error al realizar el registro");
           });
