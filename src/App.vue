@@ -6,7 +6,7 @@
       <nav>
         <a v-if="is_auth" v-on:click="loadHome">Cuenta</a>
         <a v-if="is_auth">Registrar mascota</a>
-        <a v-if="is_auth">Ver mascotas</a>
+        <a v-if="is_auth" v-on:click="loadPets">Ver mascotas</a>
         <a v-if="is_auth" v-on:click="logOut">Cerrar sesion</a>
         <a v-if="!is_auth" v-on:click="loadLogin">Iniciar Sesión</a>
         <a v-if="!is_auth" v-on:click="loadSignup">Registrarse</a>
@@ -43,6 +43,7 @@ export default {
 
   methods: {
     verifyAuth: function(){
+      this.is_auth = localStorage.getItem("isAuth") || false;
       if(this.is_auth==false)
         this.$router.push({name: 'login'})
       else
@@ -68,6 +69,9 @@ export default {
     },
     loadHome: function(){
       this.$router.push({name: 'home'})
+    },
+    loadPets: function(){
+      this.$router.push({name: 'pets'})
     },
     logOut: function(){
       localStorage.clear()

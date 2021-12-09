@@ -3,6 +3,7 @@ import App from './App.vue'
 import SignUp from './components/SignUp.vue'
 import LogIn from './components/LogIn.vue'
 import Home from './components/Home.vue'
+import Pets from './components/Pets.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/user/home',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/pets/view',
+    name: 'pets',
+    component: Pets
   },
 ]
 

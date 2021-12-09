@@ -18,7 +18,7 @@
 import gql from "graphql-tag";
 
 export default {
-    name: "LogIn",
+    name: "login",
   data: function() {
     return {
       user: {
@@ -51,7 +51,7 @@ export default {
            token_refresh: result.data.logIn.refresh,
          };
 
-        this.$emit("completedLogIn", dataLogIn);
+        this.$emit("completedLogin", dataLogIn);
        })
        .catch((error) => {
          alert("ERROR 401: Credenciales Incorrectas.");

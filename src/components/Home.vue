@@ -1,6 +1,6 @@
 <template>
     <div class="greetings">
-        <h1>!Bienvenido <span>{{username}}</span>!</h1>
+        <h1>!Bienvenido <span>{{userDetailById.username}}</span>!</h1>
         <div class="details">
             <div class="container-detail">
                 <h3>Su información es la siguiente</h3>
