@@ -4,6 +4,7 @@ import SignUp from './components/SignUp.vue'
 import LogIn from './components/LogIn.vue'
 import Home from './components/Home.vue'
 import Pets from './components/Pets.vue'
+import PetsSignUp from "./components/PetsSignUp";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/pets/view',
     name: 'pets',
     component: Pets
+  },
+  {
+    path: '/pets/signup',
+    name: 'petsSignUp',
+    component: PetsSignUp
   },
 ]
 

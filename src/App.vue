@@ -5,7 +5,7 @@
       <h1><a href="">WebPets</a></h1>
       <nav>
         <a v-if="is_auth" v-on:click="loadHome">Cuenta</a>
-        <a v-if="is_auth">Registrar mascota</a>
+        <a v-if="is_auth" v-on:click="loadPetsSignUp">Registrar mascota</a>
         <a v-if="is_auth" v-on:click="loadPets">Ver mascotas</a>
         <a v-if="is_auth" v-on:click="logOut">Cerrar sesion</a>
         <a v-if="!is_auth" v-on:click="loadLogin">Iniciar Sesión</a>
@@ -77,7 +77,10 @@ export default {
       localStorage.clear()
       alert('Sesión cerrada')
       this.verifyAuth()
-    }
+    },
+    loadPetsSignUp: function(){
+      this.$router.push({name: 'petsSignUp'})
+    },
   },
 
   created: function(){
